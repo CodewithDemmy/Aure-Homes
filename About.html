@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — Aure Homes</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* STORY */
+    .story { padding:100px 0; }
+    .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .story-img { background:linear-gradient(135deg,var(--navy),#2d4a6a); border-radius:16px; height:500px; display:flex; align-items:center; justify-content:center; font-size:6rem; color:rgba(245,197,24,0.2); position:relative; }
+    .story-badge { position:absolute; bottom:-24px; left:30px; background:var(--gold); border-radius:12px; padding:18px 24px; }
+    .story-badge p { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700; color:var(--navy); line-height:1; }
+    .story-badge span { font-size:0.75rem; font-weight:600; color:var(--navy); opacity:0.7; text-transform:uppercase; letter-spacing:0.1em; }
+    .story-text p { font-size:1rem; color:#555; line-height:1.9; margin-bottom:18px; }
+
+    /* MISSION VISION */
+    .mv-section { padding:100px 0; background:var(--off-white); }
+    .mv-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:56px; }
+    .mv-card { background:var(--white); border-radius:16px; padding:44px; box-shadow:0 4px 24px rgba(0,0,0,0.06); border-top:4px solid var(--gold); }
+    .mv-card .mv-icon { width:60px; height:60px; background:var(--gold-pale); border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; }
+    .mv-card .mv-icon i { font-size:1.5rem; color:var(--gold-dark); }
+    .mv-card h3 { font-size:1.6rem; color:var(--navy); margin-bottom:16px; }
+    .mv-card p { font-size:0.95rem; color:#666; line-height:1.8; }
+
+    /* TEAM */
+    .team { padding:100px 0; }
+    .team-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:56px; max-width:800px; margin-left:auto; margin-right:auto; }
+    .team-card { background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08); text-align:center; transition:all var(--transition); }
+    .team-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,0.12); }
+    .team-avatar { height:320px; overflow:hidden; position:relative; }
+    .team-avatar img { width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform 0.5s ease; }
+    .team-card:hover .team-avatar img { transform:scale(1.04); }
+    .team-avatar::after { content:''; position:absolute; bottom:0; left:0; right:0; height:4px; background:var(--gold); z-index:1; }
+    .team-body { padding:28px; }
+    .team-body h3 { font-size:1.4rem; color:var(--navy); margin-bottom:4px; }
+    .team-body .role { font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px; }
+    .team-body p { font-size:0.88rem; color:var(--gray); line-height:1.7; }
+
+    /* VALUES */
+    .values { padding:100px 0; background:var(--navy); }
+    .values .section-title { color:var(--white); }
+    .values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:56px; }
+    .value-item { text-align:center; padding:36px 20px; border:1px solid rgba(255,255,255,0.08); border-radius:12px; transition:all var(--transition); }
+    .value-item:hover { border-color:var(--gold); background:rgba(255,255,255,0.03); }
+    .value-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:700; color:rgba(245,197,24,0.2); margin-bottom:12px; }
+    .value-item h4 { font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:600; color:var(--white); margin-bottom:10px; }
+    .value-item p { font-size:0.82rem; color:rgba(255,255,255,0.45); line-height:1.7; }
+
+    @media(max-width:992px){
+      .story-grid{grid-template-columns:1fr;} .story-img{display:none;}
+      .mv-grid{grid-template-columns:1fr;}
+      .team-grid{grid-template-columns:1fr;}
+      .values-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){ .values-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+
+<nav class="navbar scrolled">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="images/logo.jpeg" alt="Aure Homes"/></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="properties.html">Properties</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-gold nav-cta">Get in Touch</a>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1>About Aure Homes</h1>
+  <p>Inspired by gold. Built on trust.</p>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>About</span></div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-visual">
+        <div class="story-img"><i class="fas fa-city"></i>
+          <div class="story-badge"><p>2019</p><span>Founded</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label fade-up">Our Story</div>
+        <h2 class="section-title fade-up">Redefining Real Estate<br/>in Nigeria</h2>
+        <div class="fade-up">
+          <p>Aure Homes was founded with a simple vision — to redefine the real estate experience in Nigeria by combining trust, quality, and excellence.</p>
+          <p>Inspired by the meaning of "Aure" (gold), we set out to create a brand that represents value, reliability, and premium living. What started as a passion for connecting people to the right spaces has grown into a commitment to delivering properties that truly feel like home.</p>
+          <p>At Aure Homes, we believe that finding a home should be more than just a transaction; it should be a seamless, meaningful journey.</p>
+        </div>
+        <div style="margin-top:36px;" class="fade-up">
+          <a href="contact.html" class="btn btn-gold">Start Your Journey</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mv-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label fade-up" style="justify-content:center;">Our Purpose</div>
+      <h2 class="section-title fade-up">Mission & Vision</h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card fade-up">
+        <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Our Mission</h3>
+        <p>To provide high-quality real estate solutions by connecting clients with properties that offer comfort, value, and long-term satisfaction. We exist to make the journey of finding a home simple, transparent, and truly rewarding.</p>
+      </div>
+      <div class="mv-card fade-up">
+        <div class="mv-icon"><i class="fas fa-eye"></i></div>
+        <h3>Our Vision</h3>
+        <p>To become a trusted name in Nigeria's real estate industry, known for excellence, integrity, and delivering homes that meet the highest standards of living. We aim to be the first choice for anyone seeking premium property solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label fade-up" style="justify-content:center;">The People Behind Aure</div>
+      <h2 class="section-title fade-up">Meet Our Leadership</h2>
+      <p class="section-subtitle fade-up" style="margin:0 auto;">Driven by passion, guided by purpose — our founders bring vision and dedication to every property we handle.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <div class="team-avatar"><img src="images/Perfection Emiene Odeh.jpeg" alt="Perfection — Founder, Aure Homes"/></div>
+        <div class="team-body">
+          <h3>Perfection</h3>
+          <div class="role">Founder</div>
+          <p>The visionary behind Aure Homes, Perfection built the brand from the ground up — passionate about creating meaningful real estate experiences for every client.</p>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar"><img src="images/Ademola Afolabi.jpg" alt="Ademola Afolabi — Co-Founder, Aure Homes"/></div>
+        <div class="team-body">
+          <h3>Ademola Afolabi</h3>
+          <div class="role">Co-Founder</div>
+          <p>Ademola brings expertise, strategy, and energy to the Aure Homes team — ensuring every operation is seamless, client-focused, and held to gold standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label fade-up" style="justify-content:center;">What Drives Us</div>
+      <h2 class="section-title fade-up">Our Core Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-item fade-up">
+        <div class="value-num">01</div>
+        <h4>Trust</h4>
+        <p>Every relationship we build is grounded in honesty and reliability. Your confidence in us is everything.</p>
+      </div>
+      <div class="value-item fade-up">
+        <div class="value-num">02</div>
+        <h4>Excellence</h4>
+        <p>We hold ourselves to golden standards in every property we list and every service we deliver.</p>
+      </div>
+      <div class="value-item fade-up">
+        <div class="value-num">03</div>
+        <h4>Integrity</h4>
+        <p>Transparency is at the heart of all we do. No surprises, no hidden information — ever.</p>
+      </div>
+      <div class="value-item fade-up">
+        <div class="value-num">04</div>
+        <h4>People First</h4>
+        <p>Your needs, goals, and comfort always come first — from the first call to the final handover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.jpeg" alt="Aure Homes"/>
+        <p>Aure Homes is a premium real estate brand dedicated to helping individuals and families find quality homes and investment opportunities across Nigeria.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/2348166446928" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com/aure_homes" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/@aure.homes" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="properties.html">Properties</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Property Sales</a></li>
+          <li><a href="services.html">Rentals & Leasing</a></li>
+          <li><a href="services.html">Consultation</a></li>
+          <li><a href="services.html">Investment Advisory</a></li>
+          <li><a href="services.html">Site Inspections</a></li>
+          <li><a href="services.html">Property Marketing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No 22, Ogunlowo Street, Ajuwin-Alagbola Road, Lagos State</span></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:aurehomes1@gmail.com">aurehomes1@gmail.com</a></div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/2348166446928">+234 816 644 6928</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Aure Homes. All Rights Reserved.</p>
+      <p>Premium Living, Golden Standards.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/2348166446928" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<script src="js/main.js"></script>
+</body>
+</html>

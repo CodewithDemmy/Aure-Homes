@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — Aure Homes</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .blog-section { padding:100px 0; background:var(--off-white); }
+    .blog-grid { display:grid; grid-template-columns:2fr 1fr; gap:48px; margin-top:56px; }
+    
+    .blog-post { background:var(--white); border-radius:14px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin-bottom:32px; transition:all var(--transition); }
+    .blog-post:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(0,0,0,0.1); }
+    .blog-img { width:100%; height:260px; background:linear-gradient(135deg,var(--navy),#2d4a6a); display:flex; align-items:center; justify-content:center; font-size:4rem; color:rgba(245,197,24,0.25); }
+    .blog-body { padding:32px; }
+    .blog-meta { display:flex; align-items:center; gap:16px; margin-bottom:14px; flex-wrap:wrap; }
+    .blog-tag { background:var(--gold-pale); color:var(--gold-dark); font-size:0.72rem; font-weight:700; padding:4px 12px; border-radius:100px; letter-spacing:0.1em; text-transform:uppercase; }
+    .blog-date { font-size:0.8rem; color:var(--gray); display:flex; align-items:center; gap:6px; }
+    .blog-body h2 { font-size:1.6rem; color:var(--navy); margin-bottom:12px; }
+    .blog-body h2 a:hover { color:var(--gold-dark); }
+    .blog-body p { font-size:0.9rem; color:#666; line-height:1.8; margin-bottom:22px; }
+    .blog-read { display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:600; color:var(--navy); letter-spacing:0.08em; text-transform:uppercase; transition:gap var(--transition); }
+    .blog-read:hover { gap:14px; color:var(--gold-dark); }
+
+    /* SIDEBAR */
+    
+    .sidebar-widget { background:var(--white); border-radius:14px; padding:28px; margin-bottom:28px; box-shadow:0 4px 16px rgba(0,0,0,0.05); }
+    .sidebar-widget h4 { font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:22px; padding-bottom:12px; border-bottom:1px solid var(--gray-light); }
+    .sidebar-cats li { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid var(--gray-light); font-size:0.88rem; }
+    .sidebar-cats li:last-child { border-bottom:none; }
+    .sidebar-cats a { color:var(--text); transition:color var(--transition); }
+    .sidebar-cats a:hover { color:var(--gold-dark); }
+    .sidebar-cats span { font-size:0.75rem; background:var(--off-white); color:var(--gray); padding:3px 10px; border-radius:100px; }
+    .sidebar-recent li { display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--gray-light); align-items:flex-start; }
+    .sidebar-recent li:last-child { border-bottom:none; }
+    .recent-thumb { width:56px; height:56px; background:linear-gradient(135deg,var(--navy),#2d4a6a); border-radius:8px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:rgba(245,197,24,0.4); }
+    .recent-text h5 { font-size:0.85rem; color:var(--navy); margin-bottom:4px; line-height:1.3; }
+    .recent-text span { font-size:0.75rem; color:var(--gray); }
+    .newsletter-form { display:flex; flex-direction:column; gap:12px; margin-top:8px; }
+    .newsletter-form input { padding:12px 16px; border:1.5px solid var(--gray-light); border-radius:6px; font-size:0.85rem; font-family:'Outfit',sans-serif; outline:none; transition:border-color var(--transition); }
+    .newsletter-form input:focus { border-color:var(--gold); }
+
+    @media(max-width:992px){ .blog-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<nav class="navbar scrolled">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="images/logo.jpeg" alt="Aure Homes"/></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="properties.html">Properties</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-gold nav-cta">Get in Touch</a>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1>Aure Homes Blog</h1>
+  <p>Real estate insights, tips, and market trends</p>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Blog</span></div>
+</section>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid">
+      <div class="blog-main">
+
+        <article class="blog-post fade-up">
+          <div class="blog-img"><i class="fas fa-city"></i></div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Real Estate Tips</span>
+              <span class="blog-date"><i class="fas fa-calendar"></i> January 15, 2025</span>
+            </div>
+            <h2><a href="#">5 Things to Check Before Buying Property in Lagos</a></h2>
+            <p>Buying property in Lagos can be exciting, but it comes with unique considerations. From verifying land documents to understanding estate charges, here are the five most important steps every buyer should take before committing to a purchase.</p>
+            <a href="#" class="blog-read">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-post fade-up">
+          <div class="blog-img"><i class="fas fa-chart-line"></i></div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Investment</span>
+              <span class="blog-date"><i class="fas fa-calendar"></i> February 3, 2025</span>
+            </div>
+            <h2><a href="#">Why Real Estate Remains Nigeria's Most Reliable Investment</a></h2>
+            <p>In an era of economic uncertainty, savvy investors continue to turn to real estate as a stable, long-term wealth builder. We break down why property investment in Nigeria, especially in Lagos, continues to outperform other asset classes.</p>
+            <a href="#" class="blog-read">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-post fade-up">
+          <div class="blog-img"><i class="fas fa-key"></i></div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="blog-tag">Renting</span>
+              <span class="blog-date"><i class="fas fa-calendar"></i> March 10, 2025</span>
+            </div>
+            <h2><a href="#">Renting vs Buying in Lagos: What's Right for You?</a></h2>
+            <p>With rising property prices and shifting lifestyle needs, the rent-or-buy dilemma is more relevant than ever. We weigh the pros and cons to help you make the best decision based on your financial situation and long-term goals.</p>
+            <a href="#" class="blog-read">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+      </div>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-widget fade-up">
+          <h4>Categories</h4>
+          <ul class="sidebar-cats">
+            <li><a href="#">Real Estate Tips</a><span>6</span></li>
+            <li><a href="#">Investment</a><span>4</span></li>
+            <li><a href="#">Renting</a><span>3</span></li>
+            <li><a href="#">Market Trends</a><span>5</span></li>
+            <li><a href="#">Home Décor</a><span>2</span></li>
+          </ul>
+        </div>
+        <div class="sidebar-widget fade-up">
+          <h4>Recent Posts</h4>
+          <ul class="sidebar-recent">
+            <li>
+              <div class="recent-thumb"><i class="fas fa-home"></i></div>
+              <div class="recent-text"><h5><a href="#">Top 10 Fastest Growing Neighbourhoods in Lagos</a></h5><span>April 2025</span></div>
+            </li>
+            <li>
+              <div class="recent-thumb"><i class="fas fa-file-contract"></i></div>
+              <div class="recent-text"><h5><a href="#">Understanding the C of O: A Buyer's Guide</a></h5><span>March 2025</span></div>
+            </li>
+            <li>
+              <div class="recent-thumb"><i class="fas fa-piggy-bank"></i></div>
+              <div class="recent-text"><h5><a href="#">How to Save for Your First Home in Nigeria</a></h5><span>Feb 2025</span></div>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-widget fade-up">
+          <h4>Newsletter</h4>
+          <p style="font-size:0.85rem;color:var(--gray);margin-bottom:14px;">Get the latest property insights delivered to your inbox.</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Your email address"/>
+            <button class="btn btn-gold" style="padding:12px;font-size:0.8rem;">Subscribe</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.jpeg" alt="Aure Homes"/>
+        <p>Aure Homes is a premium real estate brand dedicated to helping individuals and families find quality homes and investment opportunities across Nigeria.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/2348166446928" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com/aure_homes" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/@aure.homes" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="properties.html">Properties</a></li><li><a href="services.html">Services</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Property Sales</a></li><li><a href="services.html">Rentals & Leasing</a></li><li><a href="services.html">Consultation</a></li><li><a href="services.html">Investment Advisory</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No 22, Ogunlowo Street, Ajuwin-Alagbola Road, Lagos State</span></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:aurehomes1@gmail.com">aurehomes1@gmail.com</a></div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/2348166446928">+234 816 644 6928</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Aure Homes. All Rights Reserved.</p><p>Premium Living, Golden Standards.</p></div>
+  </div>
+</footer>
+<a href="https://wa.me/2348166446928" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<script src="js/main.js"></script>
+</body>
+</html>
