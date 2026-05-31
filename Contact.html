@@ -9,7 +9,7 @@
   <style>
     .contact-section { padding:100px 0; }
     .contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:70px; align-items:flex-start; }
-    
+    .contact-info { }
     .contact-item { display:flex; gap:18px; margin-bottom:36px; }
     .contact-icon { width:54px; height:54px; background:var(--gold-pale); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .contact-icon i { color:var(--gold-dark); font-size:1.2rem; }
@@ -35,6 +35,13 @@
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--gold); }
     .form-group textarea { height:130px; resize:vertical; }
     .form-submit { width:100%; padding:16px; font-size:0.88rem; }
+
+    .req { color: var(--gold-dark); }
+    .form-success { text-align:center; padding:40px 20px; }
+    .form-success .success-icon { font-size:3rem; color:#22c55e; margin-bottom:16px; }
+    .form-success h4 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--navy); margin-bottom:8px; }
+    .form-success p { font-size:0.9rem; color:var(--gray); }
+    .btn-loading { opacity:0.7; cursor:not-allowed; pointer-events:none; }
 
     .map-section { padding:0 0 100px; }
     .map-placeholder { background:linear-gradient(135deg,#e8edf3,#d0d9e3); border-radius:16px; height:380px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:var(--gray); }
@@ -114,27 +121,54 @@
       <div class="contact-form-card fade-up">
         <h3>Send Us a Message</h3>
         <p>Fill out the form below and a member of our team will respond within 24 hours.</p>
-        <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" placeholder="e.g. Chidi"/></div>
-          <div class="form-group"><label>Last Name</label><input type="text" placeholder="e.g. Obi"/></div>
+
+        <!-- SUCCESS MESSAGE -->
+        <div class="form-success" id="formSuccess" style="display:none;">
+          <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+          <h4>Message Sent!</h4>
+          <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
         </div>
-        <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+234 ..."/></div>
-        <div class="form-group">
-          <label>I'm Interested In</label>
-          <select>
-            <option value="">Select a service...</option>
-            <option>Buying a Property</option>
-            <option>Renting / Leasing</option>
-            <option>Real Estate Consultation</option>
-            <option>Investment Advisory</option>
-            <option>Site Inspection / Tour</option>
-            <option>Property Marketing</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Your Message</label><textarea placeholder="Tell us more about what you're looking for..."></textarea></div>
-        <button class="btn btn-gold form-submit">Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i></button>
+
+        <form id="contactForm" action="https://formspree.io/f/xgoqbqzd" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" name="first_name" placeholder="e.g. Chidi" required/>
+            </div>
+            <div class="form-group">
+              <label>Last Name <span class="req">*</span></label>
+              <input type="text" name="last_name" placeholder="e.g. Obi" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="your@email.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="+234 ..."/>
+          </div>
+          <div class="form-group">
+            <label>I'm Interested In</label>
+            <select name="service">
+              <option value="">Select a service...</option>
+              <option>Buying a Property</option>
+              <option>Renting / Leasing</option>
+              <option>Real Estate Consultation</option>
+              <option>Investment Advisory</option>
+              <option>Site Inspection / Tour</option>
+              <option>Property Marketing</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your Message <span class="req">*</span></label>
+            <textarea name="message" placeholder="Tell us more about what you're looking for..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold form-submit" id="submitBtn">
+            Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -175,5 +209,41 @@
 </footer>
 <a href="https://wa.me/2348166446928" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 <script src="js/main.js"></script>
-</body>
+<script>
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.classList.add('btn-loading');
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        const data = await response.json();
+        submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>';
+        submitBtn.classList.remove('btn-loading');
+        alert('Oops! Something went wrong. Please try again or contact us directly on WhatsApp.');
+      }
+    } catch (error) {
+      submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane" style="margin-left:8px;"></i>';
+      submitBtn.classList.remove('btn-loading');
+      alert('Network error. Please check your connection and try again.');
+    }
+  });
+</script>
 </html>
