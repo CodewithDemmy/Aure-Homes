@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +43,14 @@
     .form-success h4 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--navy); margin-bottom:8px; }
     .form-success p { font-size:0.9rem; color:var(--gray); }
     .btn-loading { opacity:0.7; cursor:not-allowed; pointer-events:none; }
+
+    .map-wrapper { border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.1); }
+    .map-header { background:var(--navy); padding:20px 28px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .map-info { display:flex; align-items:center; gap:16px; }
+    .map-info i { font-size:1.4rem; color:var(--gold); flex-shrink:0; }
+    .map-info h4 { font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:700; color:var(--white); margin-bottom:3px; }
+    .map-info p { font-size:0.82rem; color:rgba(255,255,255,0.55); }
+    @media(max-width:600px){ .map-header{flex-direction:column;align-items:flex-start;} }
 
     .map-section { padding:0 0 100px; }
     .map-placeholder { background:linear-gradient(135deg,#e8edf3,#d0d9e3); border-radius:16px; height:380px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:var(--gray); }
@@ -176,10 +185,29 @@
 
 <section class="map-section">
   <div class="container">
-    <div class="map-placeholder fade-up">
-      <i class="fas fa-map-marked-alt"></i>
-      <p>No 22, Ogunlowo Street, Ajuwin-Alagbola Road, Lagos State</p>
-      <span>Map integration coming soon</span>
+    <div class="map-wrapper fade-up">
+      <div class="map-header">
+        <div class="map-info">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h4>Our Location</h4>
+            <p>No 22, Ogunlowo Street, Ajuwin-Alagbola Road, Lagos State</p>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/search/Ogunlowo+Street+Alagbola+Lagos" target="_blank" class="btn btn-navy" style="padding:10px 22px;font-size:0.8rem;">
+          <i class="fas fa-directions" style="margin-right:8px;"></i>Get Directions
+        </a>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952!2d3.3515!3d6.6018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sOgunlowo+Street%2C+Alagbola%2C+Lagos!5e0!3m2!1sen!2sng!4v1"
+        width="100%"
+        height="420"
+        style="border:0; border-radius:0 0 16px 16px; display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Aure Homes Location — Ogunlowo Street, Lagos">
+      </iframe>
     </div>
   </div>
 </section>
