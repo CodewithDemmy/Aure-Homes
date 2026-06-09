@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    .filter-bar { background:var(--white); padding:32px 0; border-bottom:1px solid var(--gray-light); margin-bottom:0; }
+    .filter-bar { background:var(--white); padding:32px 0; border-bottom:1px solid var(--gray-light); }
     .filter-inner { display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
     .filter-btn { padding:10px 22px; border:1.5px solid var(--gray-light); border-radius:100px; font-size:0.82rem; font-weight:500; cursor:pointer; transition:all var(--transition); background:var(--white); color:var(--text); }
     .filter-btn:hover, .filter-btn.active { background:var(--navy); color:var(--white); border-color:var(--navy); }
@@ -20,8 +20,10 @@
     .listings-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
     .prop-card { background:var(--white); border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.06); transition:all var(--transition); }
     .prop-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,0.12); }
-    .prop-img { width:100%; height:220px; background:linear-gradient(135deg,#e0e6ee,#c8d3e0); display:flex; align-items:center; justify-content:center; font-size:3.5rem; color:#a0aab5; position:relative; }
-    .prop-type { position:absolute; top:14px; left:14px; font-size:0.7rem; font-weight:700; padding:5px 12px; border-radius:100px; letter-spacing:0.08em; text-transform:uppercase; }
+    .prop-img { width:100%; height:220px; position:relative; overflow:hidden; }
+    .prop-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; }
+    .prop-card:hover .prop-img img { transform:scale(1.05); }
+    .prop-type { position:absolute; top:14px; left:14px; font-size:0.7rem; font-weight:700; padding:5px 12px; border-radius:100px; letter-spacing:0.08em; text-transform:uppercase; z-index:1; }
     .for-sale { background:var(--navy); color:var(--white); }
     .for-rent { background:var(--gold); color:var(--navy); }
     .prop-body { padding:22px; }
@@ -64,11 +66,11 @@
   <div class="container">
     <div class="filter-inner">
       <div class="filter-search"><i class="fas fa-search"></i><input type="text" placeholder="Search by location or property type..."/></div>
-      <button class="filter-btn active">All</button>
-      <button class="filter-btn">For Sale</button>
-      <button class="filter-btn">For Rent</button>
-      <button class="filter-btn">Residential</button>
-      <button class="filter-btn">Commercial</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="sale">For Sale</button>
+      <button class="filter-btn" data-filter="rent">For Rent</button>
+      <button class="filter-btn" data-filter="residential">Residential</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
     </div>
   </div>
 </div>
@@ -78,8 +80,11 @@
     <p class="listings-count fade-up">Showing <span>9 properties</span> — curated for premium living</p>
     <div class="listings-grid">
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-sale">For Sale</span><i class="fas fa-home"></i></div>
+      <div class="prop-card fade-up" data-category="sale residential">
+        <div class="prop-img">
+          <span class="prop-type for-sale">For Sale</span>
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="3-Bedroom Terrace Duplex" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>3-Bedroom Terrace Duplex</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Ajah, Lagos</div>
@@ -95,8 +100,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-rent">For Rent</span><i class="fas fa-building"></i></div>
+      <div class="prop-card fade-up" data-category="rent residential">
+        <div class="prop-img">
+          <span class="prop-type for-rent">For Rent</span>
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80" alt="2-Bedroom Apartment" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>2-Bedroom Apartment</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Lekki Phase 1, Lagos</div>
@@ -112,8 +120,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-sale">For Sale</span><i class="fas fa-city"></i></div>
+      <div class="prop-card fade-up" data-category="sale residential">
+        <div class="prop-img">
+          <span class="prop-type for-sale">For Sale</span>
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80" alt="5-Bedroom Luxury Duplex" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>5-Bedroom Luxury Duplex</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> VGC, Lagos</div>
@@ -129,8 +140,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-rent">For Rent</span><i class="fas fa-door-open"></i></div>
+      <div class="prop-card fade-up" data-category="rent residential">
+        <div class="prop-img">
+          <span class="prop-type for-rent">For Rent</span>
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80" alt="1-Bedroom Mini Flat" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>1-Bedroom Mini Flat</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Surulere, Lagos</div>
@@ -146,8 +160,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-sale">For Sale</span><i class="fas fa-warehouse"></i></div>
+      <div class="prop-card fade-up" data-category="sale commercial">
+        <div class="prop-img">
+          <span class="prop-type for-sale">For Sale</span>
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Commercial Office Space" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>Commercial Office Space</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Ikeja, Lagos</div>
@@ -163,8 +180,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-sale">For Sale</span><i class="fas fa-home"></i></div>
+      <div class="prop-card fade-up" data-category="sale residential">
+        <div class="prop-img">
+          <span class="prop-type for-sale">For Sale</span>
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80" alt="4-Bedroom Detached Bungalow" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>4-Bedroom Detached Bungalow</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Ikorodu, Lagos</div>
@@ -180,8 +200,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-rent">For Rent</span><i class="fas fa-building"></i></div>
+      <div class="prop-card fade-up" data-category="rent residential">
+        <div class="prop-img">
+          <span class="prop-type for-rent">For Rent</span>
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&q=80" alt="3-Bedroom Flat" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>3-Bedroom Flat</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Yaba, Lagos</div>
@@ -197,8 +220,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-sale">For Sale</span><i class="fas fa-house-user"></i></div>
+      <div class="prop-card fade-up" data-category="sale residential">
+        <div class="prop-img">
+          <span class="prop-type for-sale">For Sale</span>
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="6-Bedroom Mansion" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>6-Bedroom Mansion</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Banana Island, Lagos</div>
@@ -214,8 +240,11 @@
         </div>
       </div>
 
-      <div class="prop-card fade-up">
-        <div class="prop-img"><span class="prop-type for-rent">For Rent</span><i class="fas fa-store"></i></div>
+      <div class="prop-card fade-up" data-category="rent commercial">
+        <div class="prop-img">
+          <span class="prop-type for-rent">For Rent</span>
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80" alt="Shop Space" loading="lazy"/>
+        </div>
         <div class="prop-body">
           <h3>Shop Space — Plaza</h3>
           <div class="prop-location"><i class="fas fa-map-marker-alt"></i> Oshodi, Lagos</div>
@@ -258,6 +287,7 @@
     <div class="footer-bottom"><p>&copy; 2025 Aure Homes. All Rights Reserved.</p><p>Premium Living, Golden Standards.</p></div>
   </div>
 </footer>
+
 <a href="https://wa.me/2348166446928" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 <script src="js/main.js"></script>
 <script>
@@ -265,6 +295,16 @@
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.prop-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.getAttribute('data-category').includes(filter)) ? 'block' : 'none';
+      });
+    });
+  });
+  document.querySelector('.filter-search input').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll('.prop-card').forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(query) ? 'block' : 'none';
     });
   });
 </script>
