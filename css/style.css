@@ -195,7 +195,12 @@ img {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  background: none;
+  border: none;
+  outline: none;
+  z-index: 1001;
+  position: relative;
 }
 .hamburger span {
   display: block;
@@ -203,6 +208,7 @@ img {
   height: 2px;
   background: var(--white);
   transition: all var(--transition);
+  pointer-events: none;
 }
 
 /* PAGE HERO */
