@@ -395,6 +395,8 @@ footer {
   }
   .hamburger {
     display: flex;
+    z-index: 1001;
+    position: relative;
   }
   .nav-links.open {
     display: flex;
@@ -408,10 +410,11 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 32px;
-    z-index: 999;
+    z-index: 1000;
   }
   .nav-links.open a {
     font-size: 1.1rem;
+    color: var(--white);
   }
   .footer-grid {
     grid-template-columns: 1fr;

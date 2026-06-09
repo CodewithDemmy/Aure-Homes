@@ -1,38 +1,56 @@
 // ===== AURE HOMES — MAIN JS =====
 
-// Add js-ready class so fade-up animations only apply when JS is running
 document.documentElement.classList.add('js-ready');
 
 // Navbar scroll
 const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+}
 
 // Mobile menu
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
-if (hamburger) {
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('open');
     const spans = hamburger.querySelectorAll('span');
-    if (navLinks.classList.contains('open')) {
+
+    if (isOpen) {
       spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
       spans[1].style.opacity = '0';
       spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+      document.body.style.overflow = 'hidden'; // prevent background scroll
     } else {
       spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      document.body.style.overflow = '';
     }
   });
+
+  // Close menu when a link is clicked
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
-      hamburger.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity=''; });
+      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      document.body.style.overflow = '';
     });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      navLinks.classList.remove('open');
+      hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      document.body.style.overflow = '';
+    }
   });
 }
 
-// Scroll animations — trigger immediately for elements already in view
+// Scroll animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
@@ -44,13 +62,11 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Also trigger any elements already visible on page load
+// Trigger elements already in viewport on load
 window.addEventListener('load', () => {
   document.querySelectorAll('.fade-up').forEach(el => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
-      el.classList.add('visible');
-    }
+    if (rect.top < window.innerHeight) el.classList.add('visible');
   });
 });
 
